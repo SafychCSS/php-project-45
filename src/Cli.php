@@ -1,5 +1,7 @@
 <?php
+
 namespace Console\Games\Cli;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use function cli\line;
