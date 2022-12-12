@@ -6,7 +6,9 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use function cli\line;
 use function cli\prompt;
-use function Console\Games\Cli\greeting;
+use function Console\Games\Engine\greeting;
+use function Console\Games\Engine\ask;
+use function Console\Games\Engine\getAnswer;
 
 function calcGame()
 {
@@ -36,8 +38,8 @@ function calcGame()
                 break;
         }
 
-        line("Question: " . $expression);
-        $answer = prompt("Your answer");
+        ask($expression);
+        $answer = getAnswer();
 
         if ((int) $answer === $correctAnswer) {
             line("Correct!");

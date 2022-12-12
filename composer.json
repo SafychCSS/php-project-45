@@ -9,7 +9,8 @@
         "files": [
             "src/Cli.php",
             "src/Even.php",
-            "src/Calc.php"
+            "src/Calc.php",
+            "src/Engine.php"
         ]
     },
     "authors": [
