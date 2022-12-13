@@ -5,8 +5,12 @@ namespace Console\Games\Even;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use function cli\line;
-use function cli\prompt;
-use function Console\Games\Cli\greeting;
+use function Console\Games\Engine\ask;
+use function Console\Games\Engine\correctAnswer;
+use function Console\Games\Engine\getAnswer;
+use function Console\Games\Engine\greeting;
+use function Console\Games\Engine\wrongAnswer;
+use const Console\Games\Engine\ROUND_COUNT;
 
 function isEven($n)
 {
@@ -26,22 +30,22 @@ function evenGame()
     $name = greeting();
     line('Answer "yes" if the number is even, otherwise answer "no".');
 
-    $questionsCount = 3;
     $i = 0;
-    while($i < $questionsCount) {
+    while($i < ROUND_COUNT) {
         $randomNumber = rand(2, 50);
-        line("Question: " . $randomNumber);
-        $answer = prompt("Your answer");
+        ask($randomNumber);
+        $answer = getAnswer();
+        $correctAnswer = isEven($randomNumber) ? 'yes' : 'no';
 
         if (isCorrectAnswer($answer, $randomNumber)) {
-            line("Correct!");
+            correctAnswer();
         } else {
-            line("%s is wrong answer ;(. Correct answer was 'no'.\nLet's try again, %s!", $answer, $name);
+            wrongAnswer($answer, $correctAnswer, $name);
             return;
         }
 
         $i += 1;
-        if ($i === $questionsCount) {
+        if ($i === ROUND_COUNT) {
             line("Congratulations, %s!", $name);
         }
     }
