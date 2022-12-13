@@ -8,6 +8,8 @@ use function cli\line;
 use function Console\Games\Engine\greeting;
 use function Console\Games\Engine\ask;
 use function Console\Games\Engine\getAnswer;
+use function Console\Games\Engine\correctAnswer;
+use function Console\Games\Engine\wrongAnswer;
 
 use const Console\Games\Engine\ROUND_COUNT;
 
@@ -42,9 +44,9 @@ function calcGame()
         $answer = getAnswer();
 
         if ((int) $answer === $correctAnswer) {
-            line("Correct!");
+            correctAnswer();
         } else {
-            line("'{$answer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.\nLet's try again, {$name}");
+            wrongAnswer($answer, $correctAnswer, $name);
             return;
         }
 

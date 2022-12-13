@@ -24,3 +24,13 @@ function getAnswer()
 {
     return prompt("Your answer");
 }
+
+function correctAnswer()
+{
+    line("Correct!");
+}
+
+function wrongAnswer($answer, $correctAnswer, $name)
+{
+    line("%s is wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!", $answer, $correctAnswer, $name);
+}
