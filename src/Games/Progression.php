@@ -17,16 +17,27 @@ use const Console\Games\Engine\ROUND_COUNT;
 function progressionGame()
 {
     $name = greeting();
-    line('Find the greatest common divisor of given numbers.');
+    line('What number is missing in the progression?');
 
     $i = 0;
     while($i < ROUND_COUNT) {
-        $randomNumber1 = rand(2, 50);
-        $randomNumber2 = rand(2, 50);
-        ask("{$randomNumber1} {$randomNumber2}");
+
+        $progressionStep = rand(2, 5);
+        $progressionLength = rand(5, 10);
+        $progression = [];
+
+        for ($k = 1; $k <= $progressionLength; $k += 1) {
+            $progression[] = $progressionStep * $k;
+        }
+
+        $randKey = array_rand($progression);
+        $correctAnswer = $progression[$randKey];
+        $progression[$randKey] = '..';
+
+        $question = implode(" ", $progression);
+        ask($question);
         $answer = getAnswer();
-        $correctAnswer = gmp_strval(gmp_gcd($randomNumber1, $randomNumber2));
-        if ($answer === $correctAnswer) {
+        if ((int) $answer === $correctAnswer) {
             correctAnswer();
         } else {
             wrongAnswer($answer, $correctAnswer, $name);
