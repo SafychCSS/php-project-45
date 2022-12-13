@@ -2,7 +2,7 @@
 
 namespace Console\Games\Even;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 use function cli\line;
 use function Console\Games\Engine\ask;
