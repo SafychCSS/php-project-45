@@ -23,7 +23,15 @@ function GcdGame()
     while($i < ROUND_COUNT) {
         $randomNumber1 = rand(2, 50);
         $randomNumber2 = rand(2, 50);
-
+        ask("{$randomNumber1} {$randomNumber2}");
+        $answer = getAnswer();
+        $correctAnswer = gmp_strval(gmp_gcd($randomNumber1, $randomNumber2));
+        if ($answer === $correctAnswer) {
+            correctAnswer();
+        } else {
+            wrongAnswer($answer, $correctAnswer, $name);
+            return;
+        }
         $i += 1;
         if ($i === ROUND_COUNT) {
             congratulation($name);
