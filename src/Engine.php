@@ -34,3 +34,8 @@ function wrongAnswer($answer, $correctAnswer, $name)
 {
     line("%s is wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!", $answer, $correctAnswer, $name);
 }
+
+function congratulation($name)
+{
+    line("Congratulations, %s!", $name);
+}

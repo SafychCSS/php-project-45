@@ -6,6 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use function cli\line;
 use function Console\Games\Engine\ask;
+use function Console\Games\Engine\congratulation;
 use function Console\Games\Engine\correctAnswer;
 use function Console\Games\Engine\getAnswer;
 use function Console\Games\Engine\greeting;
@@ -46,7 +47,7 @@ function evenGame()
 
         $i += 1;
         if ($i === ROUND_COUNT) {
-            line("Congratulations, %s!", $name);
+            congratulation($name);
         }
     }
 }
