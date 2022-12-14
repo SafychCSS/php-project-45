@@ -34,7 +34,7 @@ function progressionGame()
         $question = implode(" ", $progression);
         ask($question);
         $answer = getAnswer();
-        if ((int) $answer === $correctAnswer) {
+        if ($answer == $correctAnswer) {
             correctAnswer();
         } else {
             wrongAnswer($answer, $correctAnswer, $name);

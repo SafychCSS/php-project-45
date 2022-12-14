@@ -29,7 +29,7 @@ function gcdGame()
         ask("{$randomNumber1} {$randomNumber2}");
         $answer = getAnswer();
         $correctAnswer = gcd($randomNumber1, $randomNumber2);
-        if ((int) $answer === (int) $correctAnswer) {
+        if ($answer == $correctAnswer) {
             correctAnswer();
         } else {
             wrongAnswer($answer, $correctAnswer, $name);

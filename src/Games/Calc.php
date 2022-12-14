@@ -38,7 +38,7 @@ function calcGame()
         }
         ask($expression);
         $answer = getAnswer();
-        if ((int) $answer === $correctAnswer) {
+        if ($answer == $correctAnswer) {
             correctAnswer();
         } else {
             wrongAnswer($answer, $correctAnswer, $name);
