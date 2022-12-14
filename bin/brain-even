@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use function Console\Games\Even\evenGame;
+use function Console\Games\Even\run;
 
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
 
@@ -13,4 +13,4 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-evenGame();
+run();

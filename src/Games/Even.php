@@ -2,15 +2,11 @@
 
 namespace Console\Games\Even;
 
-use function cli\line;
-use function Console\Games\Engine\ask;
-use function Console\Games\Engine\congratulation;
-use function Console\Games\Engine\correctAnswer;
-use function Console\Games\Engine\getAnswer;
-use function Console\Games\Engine\greeting;
-use function Console\Games\Engine\wrongAnswer;
+use function Console\Games\Engine\runGame;
 
 use const Console\Games\Engine\ROUND_COUNT;
+
+const DESCRIPTION = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function isEven(int $n): bool
 {
@@ -25,29 +21,16 @@ function isCorrectAnswer(string $answer, int $randomNumber): bool
     return false;
 }
 
-function evenGame()
+function run()
 {
-    $name = greeting();
-    line('Answer "yes" if the number is even, otherwise answer "no".');
-
+    $gameData = [];
     $i = 0;
     while ($i < ROUND_COUNT) {
         $randomNumber = rand(2, 50);
-        ask($randomNumber);
-        $answer = getAnswer();
         $correctAnswer = isEven($randomNumber) ? 'yes' : 'no';
-
-        if (isCorrectAnswer($answer, $randomNumber)) {
-            correctAnswer();
-        } else {
-            wrongAnswer($answer, $correctAnswer, $name);
-            return;
-        }
-
+        $question = (string) $randomNumber;
+        $gameData[] = [$question, $correctAnswer];
         $i += 1;
-        if ($i === ROUND_COUNT) {
-            congratulation($name);
-        }
     }
+    runGame(DESCRIPTION, $gameData);
 }
-// evenGame($answers);
