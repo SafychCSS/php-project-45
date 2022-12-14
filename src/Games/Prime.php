@@ -18,7 +18,8 @@ function isPrime(int $n): bool
     return true;
 }
 
-function run(): void {
+function run(): void
+{
     $gameData = [];
     $i = 0;
     while ($i < ROUND_COUNT) {
@@ -31,4 +32,3 @@ function run(): void {
 
     runGame(DESCRIPTION, $gameData);
 }
-
