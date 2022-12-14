@@ -26,12 +26,12 @@ function primeGame()
                 $correctAnswer = 'no';
             }
         }
-        ask((string) $number);
+        ask($number);
         $answer = getAnswer();
-        if ($answer === $correctAnswer) {
+        if ($answer == $correctAnswer) {
             correctAnswer();
         } else {
-            wrongAnswer((string) $answer, (string) $correctAnswer, $name);
+            wrongAnswer($answer, $correctAnswer, $name);
             return;
         }
         $i += 1;
