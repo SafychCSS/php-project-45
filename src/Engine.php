@@ -15,7 +15,7 @@ function greeting()
     return $name;
 }
 
-function ask($question)
+function ask(string $question)
 {
     line("Question: " . $question);
 }
@@ -30,12 +30,12 @@ function correctAnswer()
     line("Correct!");
 }
 
-function wrongAnswer($answer, $correctAnswer, $name)
+function wrongAnswer(string $answer, string $correctAnswer, string $name)
 {
     line("%s is wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!", $answer, $correctAnswer, $name);
 }
 
-function congratulation($name)
+function congratulation(string $name)
 {
     line("Congratulations, %s!", $name);
 }
