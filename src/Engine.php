@@ -7,35 +7,24 @@ use function cli\prompt;
 
 const ROUND_COUNT = 3;
 
-function greeting()
+function runGame(string $description, array $gameData): void
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
-    return $name;
-}
+    line($description);
 
-function ask(int | string $question)
-{
-    line("Question: " . $question);
-}
+    foreach ($gameData as [$question, $correctAnswer]) {
+        line("Question: " . $question);
+        $answer = prompt("Your answer");
 
-function getAnswer(): string
-{
-    return prompt("Your answer");
-}
+        if ($answer === $correctAnswer) {
+            line("Correct!");
+        } else {
+            line("%s is wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!", $answer, $correctAnswer, $name);
+            return;
+        }
+    }
 
-function correctAnswer()
-{
-    line("Correct!");
-}
-
-function wrongAnswer(int | string $answer, int | string $correctAnswer, string $name)
-{
-    line("%s is wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!", $answer, $correctAnswer, $name);
-}
-
-function congratulation(string $name)
-{
     line("Congratulations, %s!", $name);
 }
