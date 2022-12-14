@@ -12,12 +12,12 @@ use function Console\Games\Engine\wrongAnswer;
 
 use const Console\Games\Engine\ROUND_COUNT;
 
-function isEven($n)
+function isEven(int $n): bool
 {
     return $n % 2 === 0;
 }
 
-function isCorrectAnswer($answer, $randomNumber)
+function isCorrectAnswer(string $answer, int $randomNumber): bool
 {
     if (($answer === 'yes' && isEven($randomNumber)) || ($answer === 'no' && !isEven($randomNumber))) {
         return true;
