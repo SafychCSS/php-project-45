@@ -12,7 +12,7 @@ use function Console\Games\Engine\wrongAnswer;
 
 use const Console\Games\Engine\ROUND_COUNT;
 
-function gcd($a, $b)
+function gcd(int $a, int $b): int
 {
     return ($a % $b !== 0) ? gcd($b, $a % $b) : $b;
 }
