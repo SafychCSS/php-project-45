@@ -2,8 +2,6 @@
 
 namespace Console\Games\Prime;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-
 use function cli\line;
 use function Console\Games\Engine\congratulation;
 use function Console\Games\Engine\greeting;
@@ -20,17 +18,14 @@ function primeGame()
     line('Answer "yes" if given number is prime. Otherwise answer "no".');
 
     $i = 0;
-    while($i < ROUND_COUNT) {
-
+    while ($i < ROUND_COUNT) {
         $number = rand(2, 50);
         $correctAnswer = 'yes';
-
         for ($k = 2; $k <= $number / 2; $k += 1) {
             if ($number % $k === 0) {
                 $correctAnswer = 'no';
             }
         }
-
         ask($number);
         $answer = getAnswer();
         if ($answer === $correctAnswer) {

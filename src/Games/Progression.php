@@ -2,8 +2,6 @@
 
 namespace Console\Games\Progression;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-
 use function cli\line;
 use function Console\Games\Engine\congratulation;
 use function Console\Games\Engine\greeting;
@@ -20,8 +18,7 @@ function progressionGame()
     line('What number is missing in the progression?');
 
     $i = 0;
-    while($i < ROUND_COUNT) {
-
+    while ($i < ROUND_COUNT) {
         $progressionStep = rand(2, 5);
         $progressionLength = rand(5, 10);
         $progression = [];

@@ -2,8 +2,6 @@
 
 namespace Console\Games\Calc;
 
-require_once __DIR__ . '/../../vendor/autoload.php';
-
 use function cli\line;
 use function Console\Games\Engine\congratulation;
 use function Console\Games\Engine\greeting;
@@ -18,14 +16,12 @@ function calcGame()
 {
     $name = greeting();
     line('What is the result of the expression?');
-
     $operators = ['+', '-', '*'];
     $i = 0;
-    while($i < ROUND_COUNT) {
+    while ($i < ROUND_COUNT) {
         $randomNumber1 = rand(2, 50);
         $randomNumber2 = rand(2, 50);
         $randKeysOperator = array_rand($operators, 1);
-
         $operator = $operators[$randKeysOperator];
         $expression = "{$randomNumber1} {$operator} {$randomNumber2}";
         $correctAnswer = null;
@@ -40,17 +36,14 @@ function calcGame()
                 $correctAnswer = $randomNumber1 * $randomNumber2;
                 break;
         }
-
         ask($expression);
         $answer = getAnswer();
-
         if ((int) $answer === $correctAnswer) {
             correctAnswer();
         } else {
             wrongAnswer($answer, $correctAnswer, $name);
             return;
         }
-
         $i += 1;
         if ($i === ROUND_COUNT) {
             congratulation($name);
