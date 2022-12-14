@@ -17,27 +17,23 @@ use const Console\Games\Engine\ROUND_COUNT;
 function primeGame()
 {
     $name = greeting();
-    line('What number is missing in the progression?');
+    line('Answer "yes" if given number is prime. Otherwise answer "no".');
 
     $i = 0;
     while($i < ROUND_COUNT) {
 
-        $progressionStep = rand(2, 5);
-        $progressionLength = rand(5, 10);
-        $progression = [];
+        $number = rand(2, 50);
+        $correctAnswer = 'yes';
 
-        for ($k = 1; $k <= $progressionLength; $k += 1) {
-            $progression[] = $progressionStep * $k;
+        for ($k = 2; $k <= $number / 2; $k += 1) {
+            if ($number % $k === 0) {
+                $correctAnswer = 'no';
+            }
         }
 
-        $randKey = array_rand($progression);
-        $correctAnswer = $progression[$randKey];
-        $progression[$randKey] = '..';
-
-        $question = implode(" ", $progression);
-        ask($question);
+        ask($number);
         $answer = getAnswer();
-        if ((int) $answer === $correctAnswer) {
+        if ($answer === $correctAnswer) {
             correctAnswer();
         } else {
             wrongAnswer($answer, $correctAnswer, $name);
