@@ -2,20 +2,15 @@
 
 namespace Console\Games\Calc;
 
-use function cli\line;
-use function Console\Games\Engine\congratulation;
-use function Console\Games\Engine\greeting;
-use function Console\Games\Engine\ask;
-use function Console\Games\Engine\getAnswer;
-use function Console\Games\Engine\correctAnswer;
-use function Console\Games\Engine\wrongAnswer;
+use function Console\Games\Engine\runGame;
 
 use const Console\Games\Engine\ROUND_COUNT;
 
-function calcGame()
+const DESCRIPTION = 'What is the result of the expression?';
+
+function run()
 {
-    $name = greeting();
-    line('What is the result of the expression?');
+    $gameData = [];
     $operators = ['+', '-', '*'];
     $i = 0;
     while ($i < ROUND_COUNT) {
@@ -23,7 +18,7 @@ function calcGame()
         $randomNumber2 = rand(2, 50);
         $randKeysOperator = array_rand($operators, 1);
         $operator = $operators[$randKeysOperator];
-        $expression = "{$randomNumber1} {$operator} {$randomNumber2}";
+        $question = "{$randomNumber1} {$operator} {$randomNumber2}";
         $correctAnswer = null;
         switch ($operator) {
             case '-':
@@ -36,17 +31,8 @@ function calcGame()
                 $correctAnswer = $randomNumber1 * $randomNumber2;
                 break;
         }
-        ask($expression);
-        $answer = getAnswer();
-        if ($answer == $correctAnswer) {
-            correctAnswer();
-        } else {
-            wrongAnswer($answer, $correctAnswer, $name);
-            return;
-        }
+        $gameData[] = [$question, (string) $correctAnswer];
         $i += 1;
-        if ($i === ROUND_COUNT) {
-            congratulation($name);
-        }
     }
+    runGame(DESCRIPTION, $gameData);
 }
