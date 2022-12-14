@@ -15,12 +15,12 @@ function greeting()
     return $name;
 }
 
-function ask($question)
+function ask(int | string $question)
 {
     line("Question: " . $question);
 }
 
-function getAnswer()
+function getAnswer(): string
 {
     return prompt("Your answer");
 }
@@ -30,12 +30,12 @@ function correctAnswer()
     line("Correct!");
 }
 
-function wrongAnswer($answer, $correctAnswer, $name)
+function wrongAnswer(int | string $answer, int | string $correctAnswer, string $name)
 {
     line("%s is wrong answer ;(. Correct answer was '%s'.\nLet's try again, %s!", $answer, $correctAnswer, $name);
 }
 
-function congratulation($name)
+function congratulation(string $name)
 {
     line("Congratulations, %s!", $name);
 }
