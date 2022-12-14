@@ -25,8 +25,8 @@ function gcdGame()
         $randomNumber2 = rand(2, 50);
         ask("{$randomNumber1} {$randomNumber2}");
         $answer = getAnswer();
-        $correctAnswer = gmp_strval(gmp_gcd($randomNumber1, $randomNumber2));
-        if ($answer === $correctAnswer) {
+        $correctAnswer = gmp_gcd($randomNumber1, $randomNumber2);
+        if ((int) $answer === (int) $correctAnswer) {
             correctAnswer();
         } else {
             wrongAnswer($answer, $correctAnswer, $name);
