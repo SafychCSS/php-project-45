@@ -14,6 +14,10 @@ use function Console\Games\Engine\wrongAnswer;
 
 use const Console\Games\Engine\ROUND_COUNT;
 
+function gcd($a,$b) {
+    return ($a % $b) ? gcd($b,$a % $b) : $b;
+}
+
 function gcdGame()
 {
     $name = greeting();
@@ -25,7 +29,7 @@ function gcdGame()
         $randomNumber2 = rand(2, 50);
         ask("{$randomNumber1} {$randomNumber2}");
         $answer = getAnswer();
-        $correctAnswer = gmp_gcd($randomNumber1, $randomNumber2);
+        $correctAnswer = gcd($randomNumber1, $randomNumber2);
         if ((int) $answer === (int) $correctAnswer) {
             correctAnswer();
         } else {
