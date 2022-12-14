@@ -2,21 +2,15 @@
 
 namespace Console\Games\Progression;
 
-use function cli\line;
-use function Console\Games\Engine\congratulation;
-use function Console\Games\Engine\greeting;
-use function Console\Games\Engine\ask;
-use function Console\Games\Engine\getAnswer;
-use function Console\Games\Engine\correctAnswer;
-use function Console\Games\Engine\wrongAnswer;
+use function Console\Games\Engine\runGame;
 
 use const Console\Games\Engine\ROUND_COUNT;
 
-function progressionGame()
-{
-    $name = greeting();
-    line('What number is missing in the progression?');
+const DESCRIPTION = 'What number is missing in the progression?';
 
+function run()
+{
+    $gameData = [];
     $i = 0;
     while ($i < ROUND_COUNT) {
         $progressionStep = rand(2, 5);
@@ -28,21 +22,12 @@ function progressionGame()
         }
 
         $randKey = array_rand($progression);
-        $correctAnswer = $progression[$randKey];
+        $correctAnswer = (string) $progression[$randKey];
         $progression[$randKey] = '..';
 
         $question = implode(" ", $progression);
-        ask($question);
-        $answer = getAnswer();
-        if ($answer == $correctAnswer) {
-            correctAnswer();
-        } else {
-            wrongAnswer($answer, $correctAnswer, $name);
-            return;
-        }
+        $gameData[] = [$question, $correctAnswer];
         $i += 1;
-        if ($i === ROUND_COUNT) {
-            congratulation($name);
-        }
     }
+    runGame(DESCRIPTION, $gameData);
 }
