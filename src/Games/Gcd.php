@@ -14,7 +14,7 @@ use const Console\Games\Engine\ROUND_COUNT;
 
 function gcd($a, $b)
 {
-    return ($a % $b) ? gcd($b, $a % $b) : $b;
+    return ($a % $b !== 0) ? gcd($b, $a % $b) : $b;
 }
 
 function gcdGame()
