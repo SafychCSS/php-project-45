@@ -14,7 +14,7 @@ use function Console\Games\Engine\wrongAnswer;
 
 use const Console\Games\Engine\ROUND_COUNT;
 
-function GcdGame()
+function gcdGame()
 {
     $name = greeting();
     line('Find the greatest common divisor of given numbers.');
